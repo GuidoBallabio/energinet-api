@@ -1,0 +1,33 @@
+{
+    "title": "Project 9 IoT",
+    "description": null,
+    "description_html": null,
+    "license": null,
+    "license_url": null,
+    "source": null,
+    "source_url": null,
+    "databases": {
+        "db": {
+            "title": "Energinet Data",
+            "description": "Public data from Energinet.dk",
+            "description_html": null,
+            "license": null,
+            "license_url": null,
+            "source": null,
+            "source_url": null,
+            "queries": {},
+            "tables": {
+                "CO2": {
+                    "title": "CO2 emission data",
+                    "description": null,
+                    "description_html": null,
+                    "license": null,
+                    "license_url": null,
+                    "source": "Energetik",
+                    "source_url": "https://energinet.dk/",
+                    "units": {}
+                }
+            }
+        }
+    }
+}
