@@ -1,4 +1,4 @@
-#!/home/daibak/.virtualenvs/iot/bin/python
+#!/usr/bin/env python
 
 import re
 import sys
