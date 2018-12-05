@@ -70,7 +70,7 @@ with self-explaining response:
 
 # Implementation
 
-## Data Retrivial
+## Data Retrieval
 
 ::: incremental
 
@@ -82,11 +82,6 @@ with self-explaining response:
 
 :::
 
-## - Database creation 
-
-- One *table* per collection
-
-- One row per data-point
 
 ## Flask
 
@@ -100,7 +95,13 @@ with self-explaining response:
 
 - Low-level
 
-- Lacking default security
+- Lacking sane defaults and mostly hardcoded
+
+## - Database creation 
+
+- One *table* per collection
+
+- One row per data-point
 
 ## Libraries
 
