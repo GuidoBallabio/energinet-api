@@ -1,0 +1,155 @@
+swagger: '2.0'
+info:
+  description: This is a simple REST API
+  version: 1.0.0
+  title: Sensor's Data API
+  # put the contact info for your development or API team
+  contact:
+    email: fake@yenerginet.com
+
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+
+# tags are used for organizing operations
+tags:
+- name: public
+  description: Operations available to anyone
+
+paths:
+  /db/CO2:
+    get:
+      tags:
+      - public
+      summary: searches table of C02 emissions
+      operationId: CO2.read_all
+      description: |
+        By passing in the appropriate id or query, you can search for
+        available datsa-points in the system
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: _sort
+        description: sort collection by column
+        required: false
+        type: string
+      - in: query
+        name: _facet
+        description: inspect table by facet of column
+        required: false
+        type: string
+      - in: query
+        name: column_contains
+        description: filter by what a field of column should contain
+        required: false
+        type: string
+      - in: query
+        name: column_exact
+        description: filter by what a field of column should be equal
+        required: false
+        type: string
+      - in: query
+        name: column_not
+        description: filter by what a field of column should not be equal
+        required: false
+        type: string
+      - in: query
+        name: column_gt
+        description: filter by what a field of column should be greater than
+        required: false
+        type: string
+      - in: query
+        name: column_lt
+        description: filter by what a field of column should be less than
+        required: false
+        type: string
+      - in: query
+        name: column_startswith
+        description: filter by what a field of column should start with
+        required: false
+        type: string
+      - in: query
+        name: column_endswith
+        description: filter by what a field of column should end with
+        required: false
+        type: string
+      - in: query
+        name: _sql
+        description: fiter result by generic SQL query
+        required: false
+        type: string
+      responses:
+        200:
+          description: Search results matching criteria
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Item'
+        400:
+          description: bad input parameter
+    
+  /db/CO2/{Timestamp}:
+    get:
+      operationId: CO2.read_one
+      tags:
+        - public
+      summary: Read one data-point from the table
+      description: Read one data-point from the table
+      parameters:
+        - name: Timestamp
+          in: path
+          description: Timestamp / id of the data-point formatted as %Y-%M-%D+%h:%m:%s.%f
+          type: string
+          required: True
+      responses:
+        200:
+          description: Successfully read resource from table
+          schema:
+            $ref: '#/definitions/Item'
+
+definitions:
+  Item:
+    type: object
+    required:
+    - database
+    - table
+    - rows
+    - columns
+    - primary_keys
+    - primary_keys_values
+    - query_ms
+    properties:
+      database:
+        type: string
+        example: db
+      table:
+        type: string
+        example: CO2
+      rows:
+        type: array
+        items:
+          $ref: '#/definitions/value'
+      columns:
+        type: array
+        items:
+          $ref: '#/definitions/column'
+      primary_keys:
+        $ref: '#/definitions/column'
+      primary_keys_values:
+        type: array
+        items:
+          $ref: '#/definitions/value'
+      query_ms:
+        type: number
+        format: float
+        example: 0.45609474182128906
+  value:
+    {}
+  column:
+    type: string
+# Added by API Auto Mocking Plugin
+host: virtserver.swaggerhub.com
+basePath: /nonoko8/enegri/1.0.0
+schemes:
+ - https
